@@ -4,11 +4,9 @@
 
 [https://cs231n.github.io/python-numpy-tutorial/](https://cs231n.github.io/python-numpy-tutorial/)
 
- 
-
 # 앞으로 할 것 : Image Classification ( 이미지 분류 )
 
-  컴퓨터가 그림을 인식할 때, 각 픽셀을 단위로 하여 3가지 정수 값(RGB)으로 인식
+컴퓨터가 그림을 인식할 때, 각 픽셀을 단위로 하여 3가지 정수 값(RGB)으로 인식
 
 앞으로, 이 값을 이용하여 이미지를 분류할 것임.
 
@@ -16,39 +14,39 @@
 
 - 시점의 변화 (Viewpoint variation)
 
-    아래 그림처럼, 같은 장면을 다른 시점에서 찍은 사진이라면 다른 데이터로 인식할 것임.
+  아래 그림처럼, 같은 장면을 다른 시점에서 찍은 사진이라면 다른 데이터로 인식할 것임.
 
-    ![Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__12.53.54.png](Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__12.53.54.png)
+  ![Lecture%202%20Image%20Classification%200c168e1bf9904587af252c3047c6ae04/_2020-12-27__12.53.54.png](image/_2020-12-27__12.53.54.png)
 
 - 조명 (Illumination)
 
-    밝은 경우, 어두운 경우 등 조명의 상태에 따라 사진의 RGB 데이터에 많은 변화가 생김.
+  밝은 경우, 어두운 경우 등 조명의 상태에 따라 사진의 RGB 데이터에 많은 변화가 생김.
 
-    ![Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__12.56.29.png](Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__12.56.29.png)
+  ![Lecture%202%20Image%20Classification%200c168e1bf9904587af252c3047c6ae04/_2020-12-27__12.56.29.png](image/_2020-12-27__12.56.29.png)
 
 - 변형 (Deformation)
 
-    대상의 자세, 형태 등에 따라 데이터 상의 많은 차이가 발생함.
+  대상의 자세, 형태 등에 따라 데이터 상의 많은 차이가 발생함.
 
-    ![Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__12.56.48.png](Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__12.56.48.png)
+  ![Lecture%202%20Image%20Classification%200c168e1bf9904587af252c3047c6ae04/_2020-12-27__12.56.48.png](image/_2020-12-27__12.56.48.png)
 
 - 폐색 (Occlusion)
 
-    아래 그림처럼 얼굴만 찍혔거나, 풀숲에 가려지거나, 꼬리만 나와있는 경우 이미지 인식이 상당히 어려움.
+  아래 그림처럼 얼굴만 찍혔거나, 풀숲에 가려지거나, 꼬리만 나와있는 경우 이미지 인식이 상당히 어려움.
 
-    ![Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__12.57.51.png](Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__12.57.51.png)
+  ![Lecture%202%20Image%20Classification%200c168e1bf9904587af252c3047c6ae04/_2020-12-27__12.57.51.png](image/_2020-12-27__12.57.51.png)
 
 - 배경의 혼잡함 (Background Clutter)
 
-    대상이 어떤 배경에 있는가도 데이터에 많은 영향을 끼침
+  대상이 어떤 배경에 있는가도 데이터에 많은 영향을 끼침
 
-    ![Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__12.58.49.png](Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__12.58.49.png)
+  ![Lecture%202%20Image%20Classification%200c168e1bf9904587af252c3047c6ae04/_2020-12-27__12.58.49.png](image/_2020-12-27__12.58.49.png)
 
 - 같은 종류 끼리의 다양함 (Intraclass variation)
 
-    "고양이"라고 해서 모두 동일하지 않음. 색, 형태, 크기 등이 굉장히 다양함을 고려하고 분류할 수 있어야 함.
+  "고양이"라고 해서 모두 동일하지 않음. 색, 형태, 크기 등이 굉장히 다양함을 고려하고 분류할 수 있어야 함.
 
-    ![Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__12.59.25.png](Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__12.59.25.png)
+  ![Lecture%202%20Image%20Classification%200c168e1bf9904587af252c3047c6ae04/_2020-12-27__12.59.25.png](image/_2020-12-27__12.59.25.png)
 
 ## **Data-Driven Approach**
 
@@ -64,12 +62,12 @@
 
 ```python
 def train(images, labels):
-	# Machine learning! 
+	# Machine learning!
 	#모든 데이터와 라벨을 저장
 	return model
 
 def predict(model, test_images):
-	#Use model to predict labels 
+	#Use model to predict labels
 	#test_image(입력)와 가장 유사한 데이터를 찾아 이와 동일한 라벨로 분류
 	return test_labels
 ```
@@ -80,7 +78,7 @@ def predict(model, test_images):
 
 10개의 라벨이 있고, 각 라벨당 5000개의 training images, 1000개의 test images가 존재한다.
 
- 즉, 50000개의 사진을 학습시켜서 10000개의 사진을 분류하려는 것이 목적이다.
+즉, 50000개의 사진을 학습시켜서 10000개의 사진을 분류하려는 것이 목적이다.
 
 ### 사진 비교할 때 사용할 것 : Distance Metric
 
@@ -88,9 +86,9 @@ $$L1\;Distance \;:\;d(I_1,I_2) = \sum_p\left| I_1^p - I_2^p \right|$$
 
 각 픽셀 별 RGB, 즉 각각의 데이터들의 모든 차이를 계산하고 그 차이들의 전체 합으로 거리를 계산한다.
 
-![Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__1.27.07.png](Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__1.27.07.png)
+![Lecture%202%20Image%20Classification%200c168e1bf9904587af252c3047c6ae04/_2020-12-27__1.27.07.png](image/_2020-12-27__1.27.07.png)
 
-### L1 Distance를 구현하여  CIFAR10을 분류한 전체 코드
+### L1 Distance를 구현하여 CIFAR10을 분류한 전체 코드
 
 ```python
 import numpy as np
@@ -114,8 +112,8 @@ class NearestNeighbor(object):
     return Ypred
 
 Xtr, Ytr, Xte, Yte = load_CIFAR10('data/cifar10/')
-Xtr_rows = Xtr.reshape(Xtr.shape[0], 32 * 32 * 3) 
-Xte_rows = Xte.reshape(Xte.shape[0], 32 * 32 * 3) 
+Xtr_rows = Xtr.reshape(Xtr.shape[0], 32 * 32 * 3)
+Xte_rows = Xte.reshape(Xte.shape[0], 32 * 32 * 3)
 nn = NearestNeighbor()
 nn.train(Xtr_rows, Ytr)
 Yte_predict = nn.predict(Xte_rows)
@@ -132,11 +130,11 @@ Xtr, Ytr, Xte, Yte = load_CIFAR10('data/cifar10/')
 Xtr_rows = Xtr.reshape(Xtr.shape[0], 32 * 32 * 3)
 # CIFAR10은 값들을 나열해둔 것이므로 가로 * 세로 * 3(RGB) 크기로 reshape함.
 # 간단하게 말하면, 모두 묶여있는 데이터 나열을 그림별로 묶는다는 의미
-Xte_rows = Xte.reshape(Xte.shape[0], 32 * 32 * 3) 
-# 분류할 데이터도 위와 동일하게 reshape 
+Xte_rows = Xte.reshape(Xte.shape[0], 32 * 32 * 3)
+# 분류할 데이터도 위와 동일하게 reshape
 ```
 
-코드 상에 주석으로 달아 놓았지만, 간단하게 설명을 덧붙이자면 읽어들인 데이터셋은 숫자들의 나열에 불과하다.  우리는 이 숫자들의 나열을 이용하여 그림들을 분류해야하기 때문에, 그림 별로 데이터를 묶어주려고 한다. 그림 하나당 데이터 32 *32 * 3(가로 * 세로 * 3(RGB))개 이므로 reshape를 이용하여 그림 별로 묶어준다.
+코드 상에 주석으로 달아 놓았지만, 간단하게 설명을 덧붙이자면 읽어들인 데이터셋은 숫자들의 나열에 불과하다. 우리는 이 숫자들의 나열을 이용하여 그림들을 분류해야하기 때문에, 그림 별로 데이터를 묶어주려고 한다. 그림 하나당 데이터 32 _32 _ 3(가로 _ 세로 _ 3(RGB))개 이므로 reshape를 이용하여 그림 별로 묶어준다.
 
 Training Data(Xtr)과 Test Data(Xte) 모두 동일 작업을 시행해준다.
 
@@ -189,11 +187,11 @@ predict 함수에서는 num_test에 test할 데이터 개수를 저장하고, Yp
 
 ### Result
 
-위의 코드를 실행시켜보면, 정확도가 38.6%밖에 되지 않는다. 
+위의 코드를 실행시켜보면, 정확도가 38.6%밖에 되지 않는다.
 
 ### Time complexity
 
-train      : O(1)
+train : O(1)
 
 predict : O(N)
 
@@ -205,17 +203,17 @@ $$L2\;Distance\;:\;d_2(I_1,I_2)=\sqrt{\sum_p(I^p_1-I^p_2)^2}$$
 
 기하학적으로 보았을 때, L1 Distance는 각각의 축 별로 거리의 합으로 Distance를 계산하는 반면, L2 Distance는 기하학적인 거리로 Distance를 계산한다고 볼 수 있다.
 
-아래 그림은 원점에서 같은 거리에 있는 점들의 집합인 '원'을 그린 그래프인데, 좌측 그림은 L1 Distance를 기준으로, 우측 그림은 L2 Distance를 기준으로 나타낸 것이다. 
+아래 그림은 원점에서 같은 거리에 있는 점들의 집합인 '원'을 그린 그래프인데, 좌측 그림은 L1 Distance를 기준으로, 우측 그림은 L2 Distance를 기준으로 나타낸 것이다.
 
-![Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__2.04.06.png](Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__2.04.06.png)
+![Lecture%202%20Image%20Classification%200c168e1bf9904587af252c3047c6ae04/_2020-12-27__2.04.06.png](image/_2020-12-27__2.04.06.png)
 
 ## K-Nearest Neighbors (KNN)
 
-Nearest Neighbor을 이용하여 분류해보니 38.6%라는 좋지 않은 정확도로 이미지를 분류하였다. 그래서 고안한 방법이 K-Nearest Neighbors이다. 이는 가장 유사한 이미지, 즉 거리가 가까운 1개의 이미지를 찾는 것이 아니라, 유사한 k개의 이미지를 찾고 그중 가장 많은 비중의 라벨로 분류하는 방법이다. 
+Nearest Neighbor을 이용하여 분류해보니 38.6%라는 좋지 않은 정확도로 이미지를 분류하였다. 그래서 고안한 방법이 K-Nearest Neighbors이다. 이는 가장 유사한 이미지, 즉 거리가 가까운 1개의 이미지를 찾는 것이 아니라, 유사한 k개의 이미지를 찾고 그중 가장 많은 비중의 라벨로 분류하는 방법이다.
 
-아래의 사진을 보자. 점들이 training data이며 동일한 색이 곧 동일한 라벨을 의미한다. 영역별 색은 해당 위치의 데이터가 들어 왔을 때, 우리가 어떤 라벨로 인식할 것인지에 대한 색이다. 아래의 그림은 위에서 설명한 Nearest Neighbors, 즉 k=1인 상황에 대한 그림이다. 
+아래의 사진을 보자. 점들이 training data이며 동일한 색이 곧 동일한 라벨을 의미한다. 영역별 색은 해당 위치의 데이터가 들어 왔을 때, 우리가 어떤 라벨로 인식할 것인지에 대한 색이다. 아래의 그림은 위에서 설명한 Nearest Neighbors, 즉 k=1인 상황에 대한 그림이다.
 
-![Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__2.08.28.png](Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__2.08.28.png)
+![Lecture%202%20Image%20Classification%200c168e1bf9904587af252c3047c6ae04/_2020-12-27__2.08.28.png](image/_2020-12-27__2.08.28.png)
 
 그런데 조금 이상한 부분들이 있다. 정 가운데에 노란색 training data가 있다보니 그 주변의 일부 영역이 노란색으로 표시된다. 즉, 해당 영역의 데이터는 노란색에 해당하는 라벨로 분류한다는 것이다. 그렇기에 영역들의 경계가 굉장히 이상하게 생겼다.
 
@@ -225,7 +223,7 @@ Nearest Neighbor을 이용하여 분류해보니 38.6%라는 좋지 않은 정�
 
 아래의 k=3, k=5일 때의 상황을 보면 k가 증가할수록, 가장 가까운 데이터 여러개를 비교하다 보니 영역들의 경계가 더욱 확실해짐을 알 수 있다
 
-![Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__2.19.32.png](Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__2.19.32.png)
+![Lecture%202%20Image%20Classification%200c168e1bf9904587af252c3047c6ae04/_2020-12-27__2.19.32.png](image/_2020-12-27__2.19.32.png)
 
 그렇다고 k가 클수록 좋은 것은 아니다. 상황에 따라 적합한 k가 있을 것이다. k뿐만 아니라, 상황에 따라 적합한 Distance 계산 방법(L1 Distacne, L2 Distance 등등)도 있을 것이다.
 
@@ -237,29 +235,29 @@ Nearest Neighbor을 이용하여 분류해보니 38.6%라는 좋지 않은 정�
 
 여기서 주의해야할 점은, 우리가 k를 정할 때는 training data만 알고, test data는 모르고 있다는 것이다. 즉, training data만을 가지고 어떻게 k를 설정할지 알아볼 것이다.
 
-### 아이디어 1 :  가장 높은 정확도를 보이는 k로 설정
+### 아이디어 1 : 가장 높은 정확도를 보이는 k로 설정
 
 이 방법으로 하면 무조건 k=1이 된다. 왜냐하면, training data 전체를 교육시킨 후 training data로 테스트해야하기 때문에 k=1일 때 정확도가 100%로 나온다.
 
 ### 아이디어 2 : 전체 데이터를 training data와 test data로 구분
 
-이렇게 하면 k를 정하기 전에 우리는 test data를 모른다는 전제를 가지게 된다. 즉, training data로 학습시킨 결과가 test data에서는 어떻게 작동할지 절대 예측할 수 없다. 
+이렇게 하면 k를 정하기 전에 우리는 test data를 모른다는 전제를 가지게 된다. 즉, training data로 학습시킨 결과가 test data에서는 어떻게 작동할지 절대 예측할 수 없다.
 
-test data는 아래에서도 계속 등장할텐데, test data를 이용하여 테스트를 진행하는 것이 k를 검증하는 최종 단계이며, 검증 후에는 그 전단계로 되돌아가는 것이 불가능함을 알고 있어야 한다. 
+test data는 아래에서도 계속 등장할텐데, test data를 이용하여 테스트를 진행하는 것이 k를 검증하는 최종 단계이며, 검증 후에는 그 전단계로 되돌아가는 것이 불가능함을 알고 있어야 한다.
 
-![Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__2.43.36.png](Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__2.43.36.png)
+![Lecture%202%20Image%20Classification%200c168e1bf9904587af252c3047c6ae04/_2020-12-27__2.43.36.png](image/_2020-12-27__2.43.36.png)
 
 ### 아이디어 3 : 전체 데이터를 training data, validation data, test data로 구분
 
 위의 아이디어는 k를 지정하여 training data를 입력하였을 때 그것이 잘 작동할지 예측할 수 있는 방법이 없는 것이 문제이다. 그래서 test하기 전, validation data를 이용하여 잘 작동하는지 확인해본다면 조금 더 나을 것이다.
 
-![Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__2.43.45.png](Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__2.43.45.png)
+![Lecture%202%20Image%20Classification%200c168e1bf9904587af252c3047c6ae04/_2020-12-27__2.43.45.png](image/_2020-12-27__2.43.45.png)
 
 ### 아이디어 4 : 전체 데이터를 여러 조각과 test data로 구분
 
 전체 데이터를 여러 조각과 test data로 구분한다. 그 후, 각각의 조각별로 조각 하나를 validation data, 나머지 조각들을 training data라고 생각하고 아이디어 3과 동일하게 시행한다. 이렇게 하면 여러번 검증이 가능하기 때문에 보다 높은 정확도를 가지는 k를 찾아낼 수 있다.
 
-![Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__2.47.12.png](Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__2.47.12.png)
+![Lecture%202%20Image%20Classification%200c168e1bf9904587af252c3047c6ae04/_2020-12-27__2.47.12.png](image/_2020-12-27__2.47.12.png)
 
 ## K-Nearest Neighbors(KNN)의 장단점
 
@@ -269,11 +267,11 @@ test data는 아래에서도 계속 등장할텐데, test data를 이용하여 �
 
 또, KNN은 실제로 활용하기에 무리가 있다. "거리"라는 개념은 굉장히 직관적인 개념이다. 우리가 시각적으로 바라보는 "유사한 그림"이라고 하여도 굉장히 다른 결과를 내뱉는 것이 바로 거리이다. 아래의 그림을 보면 원본 사진이 있고 이를 약간 변형시켜 눈코입을 가린 사진, 살짝 이동시킨 사진, 배경 색을 변화시킨 사진이 있다. 우리가 시각적으로 아래의 4개의 그림을 바라보면 상당히 비슷하다고 느낀다. 하지만 거리를 기준으로 보면 상당히 다르게 계산될 것이다.
 
-![Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__2.56.56.png](Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__2.56.56.png)
+![Lecture%202%20Image%20Classification%200c168e1bf9904587af252c3047c6ae04/_2020-12-27__2.56.56.png](image/_2020-12-27__2.56.56.png)
 
 뿐만 아니라, 아래의 그림처럼 거리라는 개념은 낮은 차원에서는 어느정도 가능하겠지만, 차원이 높아질수록 그 거리라는 개념은 직관적인 개념이 아니게 된다.
 
-![Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__3.00.24.png](Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__3.00.24.png)
+![Lecture%202%20Image%20Classification%200c168e1bf9904587af252c3047c6ae04/_2020-12-27__3.00.24.png](image/_2020-12-27__3.00.24.png)
 
 ## KNN 정리
 
@@ -287,7 +285,7 @@ test data는 아래에서도 계속 등장할텐데, test data를 이용하여 �
 
 # 선형 분류(Linear Classification)
 
-위에서 배운 KNN은 단점이 많아 실제로 사용하기에는 무리가 있었다. 
+위에서 배운 KNN은 단점이 많아 실제로 사용하기에는 무리가 있었다.
 
 이번에는 거리라는 개념 대신 이미지와 점수를 대응시키는 함수를 만들어 분류하고자 한다. 위와 동일하게 CIFAR10 데이터로 예시를 들 것이다. 이미지 하나에, 각각의 라벨에 대한 점수, 즉 10개의 점수를 얻어내는 함수를 만들 것이다. 나온 점수 중, 가장 높은 점수를 가진 라벨이 곧 주어진 그림에 대해 우리가 예측할 라벨이다.
 
@@ -295,24 +293,24 @@ test data는 아래에서도 계속 등장할텐데, test data를 이용하여 �
 
 $$f(x,W,b) = Wx + b$$
 
-아래 그림에서 보면 $f(x,W)$ 라는 함수를 볼 수 있다.$x$는 우리가 예측할 이미지 데이터,  $W$는 우리가 사용할 매개변수, 혹은 가중치이다. 또, b는 bias 벡터라고 하는데, 입력값에 관련없이 결과에 영향을 준다. 
+아래 그림에서 보면 $f(x,W)$ 라는 함수를 볼 수 있다.$x$는 우리가 예측할 이미지 데이터, $W$는 우리가 사용할 매개변수, 혹은 가중치이다. 또, b는 bias 벡터라고 하는데, 입력값에 관련없이 결과에 영향을 준다.
 
-![Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__1.04.02.png](Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__1.04.02.png)
+![Lecture%202%20Image%20Classification%200c168e1bf9904587af252c3047c6ae04/_2020-12-27__1.04.02.png](image/_2020-12-27__1.04.02.png)
 
 실제 계산하는 예시를 살펴보자.
 
 아래의 그림처럼 예측할 이미지에서 데이터를 받아내고, W에 곱한 이후 b를 더하면 각각의 라벨에 대한 점수를 얻는다.
 
-![Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__1.07.03.png](Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__1.07.03.png)
+![Lecture%202%20Image%20Classification%200c168e1bf9904587af252c3047c6ae04/_2020-12-27__1.07.03.png](image/_2020-12-27__1.07.03.png)
 
-이를 시각화 해보면,  각 라벨에 대한 W와 b가 존재하기 때문에 고차원상의 직선 $y=Wx+b$ 로 표한할 수 있다. 
+이를 시각화 해보면, 각 라벨에 대한 W와 b가 존재하기 때문에 고차원상의 직선 $y=Wx+b$ 로 표한할 수 있다.
 
-![Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__1.09.21.png](Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__1.09.21.png)
+![Lecture%202%20Image%20Classification%200c168e1bf9904587af252c3047c6ae04/_2020-12-27__1.09.21.png](image/_2020-12-27__1.09.21.png)
 
 그러면 예를 들어보자.
 
 3개의 그림을 입력으로 하여 선형 분류기에 넣어 각각 라벨 별로 점수들을 얻게 된다. 첫 번째 이미지는 고양이인데, 점수 상으로 보면 강아지의 점수가 가장 높게 나타나고 분류기는 이 사진을 강아지로 분류할 것이다. 자동차 이미지의 경우 자동차의 점수가 가장 높은 것으로 보아 올바르게 분류될 것이다. 개구리 이미지는 개구리 라벨에 대한 점수는 상당히 낮고 트럭 라벨의 점수가 높은 것으로 보아 트럭으로 분류될 것이다.
 
-![Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__1.12.34.png](Lecture%202%20Image%20Classification%2079364f7a3f4f4defb363ad01adbd8741/_2020-12-27__1.12.34.png)
+![Lecture%202%20Image%20Classification%200c168e1bf9904587af252c3047c6ae04/_2020-12-27__1.12.34.png](image/_2020-12-27__1.12.34.png)
 
 이처럼 W와 b를 올바르게 설정하지 않으면 정확성이 상당히 떨어지게 된다. 그렇다면 어떻게 하면 정확도를 높이는 W와 b를 찾을 수 있을까? 이는 다음 단원에서 알아보도록 하자.
